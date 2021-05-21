@@ -25,9 +25,40 @@
 }
 
 .main-content {
-    margin: 1rem auto;
-    max-width: 1200px;
+    background: #fff;
 
+}
+
+.sub-container {
+    margin:0 auto;
+    padding: 1rem 0;
+    max-width: 1200px;
+    display: flex;
+    gap: 2rem;
+}
+
+.left-container {
+    margin-top: 1rem;
+    flex: 3.0;
+}
+
+.left-sidebar {
+    background: #9e2a2b;
+    color: #fff;
+    padding: 1rem ;
+}
+
+.left-sidebar > li {
+    padding: .6rem;
+    font-weight: 600;
+}
+
+.left-sidebar > li > a {
+    color: #fff;
+} 
+
+.right-container {
+    flex: 9.0;
 }
 
 .content {
@@ -158,4 +189,22 @@
 
 .consular {
     padding: 1.5rem 0;
+}
+
+.external-links-form {
+    border: 1px solid #111;
+    width: 600px;
+    margin: 1rem auto;
+}
+
+.news-form {
+    border: 1px solid #111;
+    width: 600px;
+    margin: 1rem auto;
+}
+
+.clients-table {
+    border: 1px solid #111;
+    margin: 1rem auto;
+    width: 1000px;
 }
