@@ -28,22 +28,6 @@ def create_tables():
 def home():
     return render_template("index.html")
 
-@app.route('/admin', methods = ['GET', 'POST'])
-def admin():
-    if request.method == 'POST':
-        title = request.form['title']
-        description = request.form['description']
-
-        news = News(title = title, description = description)
-        db.session.add(news)
-        db.session.commit()
-
-    news_items = News.query.all()
-    images = ExternalLink.query.all()
-    clients = Client.query.all()
-
-    return render_template("admin.html", clients = clients, news_items = news_items, images = images)
-
 @app.route('/admin_news', methods = ['GET', 'POST'])
 def admin_news():
     if request.method == 'POST':
