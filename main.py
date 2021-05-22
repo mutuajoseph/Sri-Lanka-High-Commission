@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, g, session
 from flask.helpers import flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
+from functools import wraps
 import os
 import cloudinary.uploader
 
@@ -24,11 +25,44 @@ app.config.from_object(Development)
 def create_tables():
     db.create_all()
 
+# create a login required wrapper for user
+def user_login_required(f): #define a function whose first parameter is f, which is convention for the fact that it wraps a function
+    @wraps(f)
+    def wrap(*args,**kwargs):
+        if 'logged_in' in session:
+            print("Authorized to login")
+            return f(*args, **kwargs)
+        else:
+            # flash('Unauthorized! Please log in','danger')
+            print("Unauthorized")
+            return redirect(url_for('login',next=request.url))
+    return wrap
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        print("email", email)
+        print("password", password)
+
+        if email == "admin@gmail.com" and password == "admin001":
+            session['email'] = email
+            # session['password'] = password
+            session['logged_in'] = True
+            return redirect(url_for('admin_news'))
+        else:
+            return redirect(url_for('login'))
+
+    return render_template("login.html")
+
 @app.route('/', methods = ['GET', 'POST'])
 def home():
     return render_template("index.html")
 
 @app.route('/admin_news', methods = ['GET', 'POST'])
+@user_login_required
 def admin_news():
     if request.method == 'POST':
         title = request.form['title']
@@ -47,6 +81,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/admin_images', methods = ['GET', 'POST'])
+@user_login_required
 def admin_images():
     if request.method == 'POST':        
         image = request.files['file']
@@ -84,6 +119,7 @@ def admin_images():
     return render_template("admin_external_links.html", images = images)
 
 @app.route('/admin_clients', methods = ['GET', 'POST'])
+@user_login_required
 def admin_clients():
     if request.method == 'POST':
         title = request.form['title']
@@ -169,10 +205,6 @@ def contact():
         db.session.commit()
         
     return render_template("contact.html")
-
-@app.route('/login')
-def login():
-    return render_template("login.html")
 
 if __name__ == '__main__':
     app.run()
