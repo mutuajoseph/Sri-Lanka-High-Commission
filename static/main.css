@@ -3,7 +3,10 @@
     font-weight: 600;
     padding: 2rem 0;
 }
-
+/* 
+body {
+    background: #fff !important;
+} */
 
 
 .flex {
@@ -26,41 +29,8 @@
 }
 
 .main-content {
-    background: #fff;
-
-}
-
-.sub-container {
-    margin:0 auto;
-    padding: 1rem 0;
+    margin: 1rem auto;
     max-width: 1200px;
-    display: flex;
-    gap: 2rem;
-}
-
-.left-container {
-    margin-top: 1rem;
-    flex: 3.0;
-}
-
-.left-sidebar {
-    background: #9e2a2b;
-    color: #fff;
-    padding: 1rem ;
-}
-
-.left-sidebar > li {
-    padding: .6rem;
-    font-weight: 600;
-}
-
-.left-sidebar > li > a {
-    color: #fff;
-} 
-
-.right-container {
-    flex: 9.0;
-    padding: 0 1rem;
 }
 
 .content {
@@ -110,6 +80,7 @@
 }
 
 .col {
+    /* border: 1px solid #111; */
     width: 300px;
     height: auto;
     transition: all ease .5s;
@@ -192,33 +163,59 @@
     padding: 1.5rem 0;
 }
 
-.external-links-form {
-    border: 1px solid #83838380;
-    border-radius: 8px;
-    width: 400px;
-    margin: 1rem auto;
+
+.top-bar {
+    background: #9e2a2b;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.news-form {
-    border: 1px solid #83838380;
-    border-radius: 8px;
-    width: 420px;
-    margin: 1rem auto;
+.time-content {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding:.4rem 4rem;
 }
 
-.clients-table {
-    border: 1px solid #83838380;
-    border-radius: 8px;
-    margin: 1rem auto;
-    width: 1000px;
+.sub-content {
+    background-color: #fff;
+}
+
+.sub-container {
+    display: flex;
+    background: #fff;
+}
+
+.left-container{
+    flex: 2.0;
+    background-color: #9e2a2b;
+    color: #fff;
+}
+
+.left-container > ul {
+    padding: 1rem 2rem ;
+}
+
+.left-container > ul > li {
+    padding: 1rem ;
+}
+
+.left-container > ul > li > a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+}
+
+.right-container {
+    flex: 10.0;
     padding: 1rem;
 }
 
-.external {
-    border: 1px solid #111;
-    padding: .5rem 0;
-}
-
-.table-row {
-    max-width: 400px;
+.article {
+    box-shadow: 0 4px 8px 0 rgba(5, 5, 5, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
 }

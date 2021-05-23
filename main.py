@@ -147,6 +147,13 @@ def admin_clients():
 def high_commision():
     return render_template("high_commision.html")
 
+@app.route('/whats-new')
+def whats_new():
+
+    news_items = News.query.all()
+
+    return render_template("whatsNew.html", news_items=news_items)
+
 @app.route('/office_hours')
 def office_hours():
     return render_template('officeHours.html')

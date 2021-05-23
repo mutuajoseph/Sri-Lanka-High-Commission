@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<div class="main-content">
+<div class="sub-content">
     <div class="sub-container">
         <div class="left-container">
             <ul class="left-sidebar">
@@ -13,7 +13,7 @@
             <div class="news-form">
                 <h2 class="heading-2" style="padding: 0 1rem">Add News</h2>
     
-                <form action="/admin" method="POST">
+                <form action="/admin_news" method="POST">
                     <div class="form-group" style="margin: 1rem;">
                         <label for="">Title</label>
                         <input style="width: 380px;" type="text" name="title" id="" />
